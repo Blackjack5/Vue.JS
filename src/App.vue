@@ -21,9 +21,9 @@ new Vue({
       return value.toFixed(2)
     }
   },
-  mounted () {
+  API() {
     axios
-      .get('https://pokeapi/v2')
+      .get('https://pokeapi.co/api/v2/pokemon/ditto/')
       .then(response => {
         this.info = response.data.bpi
       })
