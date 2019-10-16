@@ -16,11 +16,6 @@ new Vue({
       errored: false
     }
   },
-  filters: {
-    currencydecimal (value) {
-      return value.toFixed(2)
-    }
-  },
   API() {
     axios
       .get('https://pokeapi.co/api/v2/pokemon/ditto/')
