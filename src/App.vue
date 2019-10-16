@@ -16,11 +16,12 @@ new Vue({
       errored: false
     }
   },
+
   API() {
     axios
       .get('https://pokeapi.co/api/v2/pokemon/ditto/')
       .then(response => {
-        this.info = response.data.bpi
+        this.pokemon = response.data.results
       })
       .catch(error => {
         console.log(error)
