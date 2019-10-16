@@ -1,18 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="F U C K VUE JS "/>
+  <section v-if="errored">
+    <p>Oups L'API a Disparu Veuillez réessayer ultérieurement.</p>
+  </section>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+new Vue({
+  el: '#app',
+  data () {
+    return {
+      info: null,
+      loading: true,
+      errored: false
+    }
+  },
+  filters: {
+    currencydecimal (value) {
+      return value.toFixed(2)
+    }
+  },
+  mounted () {
+    axios
+      .get('https://pokeapi/v2')
+      .then(response => {
+        this.info = response.data.bpi
+      })
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      })
+      .finally(() => this.loading = false)
   }
-}
+})
 </script>
 
 <style>
